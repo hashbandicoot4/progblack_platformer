@@ -9,11 +9,11 @@ namespace FirstGame
     public class Game1 : Game
     {
         // Declaring a new texture
-        Texture2D ballTexture;
+        Texture2D playerTexture;
         // Declaring a variable for position
-        Vector2 ballPosition;
+        Vector2 playerPosition;
         // Declaring a variable for speed
-        float ballSpeed;
+        float playerSpeed;
 
 
 
@@ -44,9 +44,9 @@ namespace FirstGame
         protected override void Initialize()
         {
             // Used to initialise the position and speed
-            ballPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2,
+            playerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2,
             _graphics.PreferredBackBufferHeight / 2);
-            ballSpeed = 400f;
+            playerSpeed = 400f;
 
             base.Initialize();
         }
@@ -61,8 +61,8 @@ namespace FirstGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // Load the ball
-            ballTexture = Content.Load<Texture2D>("pokeball");
+            // Load the charachter
+            playerTexture = Content.Load<Texture2D>("walking_right");
 
         }
 
@@ -81,24 +81,24 @@ namespace FirstGame
             // For the user input, which is stored
             var kstate = Keyboard.GetState();
             if (kstate.IsKeyDown(Keys.Up))
-                ballPosition.Y -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (kstate.IsKeyDown(Keys.Down))
-                ballPosition.Y += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                playerPosition.Y += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (kstate.IsKeyDown(Keys.Left))
-                ballPosition.X -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                playerPosition.X -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (kstate.IsKeyDown(Keys.Right))
-                ballPosition.X += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // To create the bounds for the ball
-            if (ballPosition.X > _graphics.PreferredBackBufferWidth - ballTexture.Width / 2)
-                ballPosition.X = _graphics.PreferredBackBufferWidth - ballTexture.Width / 2;
-            else if (ballPosition.X < ballTexture.Width / 2)
-                ballPosition.X = ballTexture.Width / 2;
+            if (playerPosition.X > _graphics.PreferredBackBufferWidth - playerTexture.Width / 2)
+                playerPosition.X = _graphics.PreferredBackBufferWidth - playerTexture.Width / 2;
+            else if (playerPosition.X < playerTexture.Width / 2)
+                playerPosition.X = playerTexture.Width / 2;
 
-            if (ballPosition.Y > _graphics.PreferredBackBufferHeight - ballTexture.Height / 2)
-                ballPosition.Y = _graphics.PreferredBackBufferHeight - ballTexture.Height / 2;
-            else if (ballPosition.Y < ballTexture.Height / 2)
-                ballPosition.Y = ballTexture.Height / 2;
+            if (playerPosition.Y > _graphics.PreferredBackBufferHeight - playerTexture.Height / 2)
+                playerPosition.Y = _graphics.PreferredBackBufferHeight - playerTexture.Height / 2;
+            else if (playerPosition.Y < playerTexture.Height / 2)
+                playerPosition.Y = playerTexture.Height / 2;
 
             base.Update(gameTime);
         }
@@ -118,12 +118,12 @@ namespace FirstGame
             // Draw the ball onto the screen, repositioning it to the centre
             _spriteBatch.Begin();
             _spriteBatch.Draw(
-                ballTexture,
-                ballPosition,
+                playerTexture,
+                playerPosition,
                 null,
                 Color.White,
                 0f,
-                new Vector2(ballTexture.Width / 2, ballTexture.Height / 2),
+                new Vector2(playerTexture.Width / 2, playerTexture.Height / 2),
                 Vector2.One,
                 SpriteEffects.None,
                 0f

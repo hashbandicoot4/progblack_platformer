@@ -14,6 +14,7 @@ namespace FirstGame
         Vector2 playerPosition;
         // Declaring a variable for speed
         float playerSpeed;
+        bool playerJump;
 
 
 
@@ -34,6 +35,8 @@ namespace FirstGame
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
+
+
 
 
 
@@ -62,7 +65,7 @@ namespace FirstGame
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load the charachter
-            playerTexture = Content.Load<Texture2D>("walking_right");
+            playerTexture = Content.Load<Texture2D>("pokeball");
 
         }
 
@@ -113,7 +116,7 @@ namespace FirstGame
         protected override void Draw(GameTime gameTime)
         {
             // Colour the background beige
-            GraphicsDevice.Clear(Color.Beige);
+            GraphicsDevice.Clear(Color.White);
 
             // Draw the ball onto the screen, repositioning it to the centre
             _spriteBatch.Begin();

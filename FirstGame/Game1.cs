@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstGame
 {
@@ -9,12 +12,10 @@ namespace FirstGame
     public class Game1 : Game
     {
         // Declaring a new texture
-        Texture2D playerTexture;
+        private Texture2D playerTexture;
         // Declaring a variable for position
-        Vector2 playerPosition;
-        // Declaring a variable for speed
-        float playerSpeed;
-        bool playerJump;
+        private Vector2 playerPosition;
+
 
 
 
@@ -22,6 +23,13 @@ namespace FirstGame
         // Variables used to draw on the screen
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+
+        private Sprite _sprite1;
+        private Sprite _sprite2;
+
+        // A list of platforms
+        private List<Platform> _platforms = new List<Platform>();
 
 
 
@@ -49,7 +57,6 @@ namespace FirstGame
             // Used to initialise the position and speed
             playerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2,
             _graphics.PreferredBackBufferHeight / 2);
-            playerSpeed = 400f;
 
             base.Initialize();
         }
@@ -64,9 +71,15 @@ namespace FirstGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // Load the charachter
-            playerTexture = Content.Load<Texture2D>("pokeball");
+            // Load the charachters
+            var playerTexture = Content.Load<Texture2D>("pokeball");
 
+            _sprite1 = new Sprite(playerTexture, new Vector2(100,0));
+            _sprite2 = new Sprite(playerTexture, new Vector2(500,0));
+
+            // Load the platforms, with a particular texture
+            _platforms.Add(new Platform(Content.Load<Texture2D>("platform"), new Vector2(100, 0)));
+            _platforms.Add(new Platform(Content.Load<Texture2D>("platform"), new Vector2(400, 300)));
         }
 
 
@@ -78,31 +91,9 @@ namespace FirstGame
         // Called many times to update the game state
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
-            // For the user input, which is stored
-            var kstate = Keyboard.GetState();
-            if (kstate.IsKeyDown(Keys.Up))
-                playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (kstate.IsKeyDown(Keys.Down))
-                playerPosition.Y += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (kstate.IsKeyDown(Keys.Left))
-                playerPosition.X -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (kstate.IsKeyDown(Keys.Right))
-                playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            // To create the bounds for the ball
-            if (playerPosition.X > _graphics.PreferredBackBufferWidth - playerTexture.Width / 2)
-                playerPosition.X = _graphics.PreferredBackBufferWidth - playerTexture.Width / 2;
-            else if (playerPosition.X < playerTexture.Width / 2)
-                playerPosition.X = playerTexture.Width / 2;
-
-            if (playerPosition.Y > _graphics.PreferredBackBufferHeight - playerTexture.Height / 2)
-                playerPosition.Y = _graphics.PreferredBackBufferHeight - playerTexture.Height / 2;
-            else if (playerPosition.Y < playerTexture.Height / 2)
-                playerPosition.Y = playerTexture.Height / 2;
-
+            _sprite1.Update(gameTime, _platforms);
+            _sprite2.Update(gameTime, _platforms);
             base.Update(gameTime);
         }
 
@@ -118,22 +109,32 @@ namespace FirstGame
             // Colour the background beige
             GraphicsDevice.Clear(Color.White);
 
-            // Draw the ball onto the screen, repositioning it to the centre
+            
             _spriteBatch.Begin();
-            _spriteBatch.Draw(
-                playerTexture,
-                playerPosition,
-                null,
-                Color.White,
-                0f,
-                new Vector2(playerTexture.Width / 2, playerTexture.Height / 2),
-                Vector2.One,
-                SpriteEffects.None,
-                0f
-            );
+
+            // Draw all the platforms onto the screen
+            foreach (Platform platform in _platforms)
+                platform.Draw(_spriteBatch);
+
+            // Draw the balls onto the screen
+            _sprite1.Draw(_spriteBatch);
+            _sprite2.Draw(_spriteBatch);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
         }
     }
+}
+
+static class RectangleHelper
+{
+    const int margin = 5;
+
+    //What will happen if the object touches the top of the platform
+    public static bool onTopOf(this Rectangle r1, Rectangle r2)
+    {
+        return ((r1.Bottom >= r2.Top - margin) && (r1.Bottom <= r2.Top + (r2.Height/2)) && (r1.Right >= r2.Left + 5) && (r1.Left <= r2.Right - 5));
+    }
+
 }

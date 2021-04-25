@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prog Black Game Prototype", "Prog Black Game Prototype\Prog Black Game Prototype.csproj", "{B61A0818-0B62-4387-8636-96DCDD1E52F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B61A0818-0B62-4387-8636-96DCDD1E52F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B61A0818-0B62-4387-8636-96DCDD1E52F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B61A0818-0B62-4387-8636-96DCDD1E52F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B61A0818-0B62-4387-8636-96DCDD1E52F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8AC5E8B2-7D5F-4781-B7F4-D020D4DEF1EC}
+	EndGlobalSection
+EndGlobal

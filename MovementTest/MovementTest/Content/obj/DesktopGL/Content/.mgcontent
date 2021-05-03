@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/hashi/source/repos/progblack_platformer/MovementTest/MovementTest/Content/ball.png</File>
+    <File>C:/Users/hashi/source/repos/progblack_platformer/MovementTest/MovementTest/Content/platform.png</File>
+    <File>C:/Users/hashi/source/repos/progblack_platformer/MovementTest/MovementTest/Content/Rat Wizard placeholder.png</File>
+    <File>C:/Users/hashi/source/repos/progblack_platformer/MovementTest/MovementTest/Content/StandingRat.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

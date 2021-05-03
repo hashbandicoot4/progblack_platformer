@@ -1,0 +1,4 @@
+C:\Users\hashi\source\repos\progblack_platformer\MovementTest\MovementTest\obj\Debug\netcoreapp3.1\MovementTest.csprojAssemblyReference.cache
+C:\Users\hashi\source\repos\progblack_platformer\MovementTest\MovementTest\obj\Debug\netcoreapp3.1\MovementTest.AssemblyInfoInputs.cache
+C:\Users\hashi\source\repos\progblack_platformer\MovementTest\MovementTest\obj\Debug\netcoreapp3.1\MovementTest.AssemblyInfo.cs
+C:\Users\hashi\source\repos\progblack_platformer\MovementTest\MovementTest\obj\Debug\netcoreapp3.1\MovementTest.csproj.CoreCompileInputs.cache

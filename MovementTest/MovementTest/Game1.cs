@@ -1,13 +1,20 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FirstGame;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MovementTest
 {
     public class Game1 : Game
     {
+        // Declaring a new texture
+        private Texture2D playerTexture;
+        // Declaring a variable for position
+        private Vector2 playerPosition;
         //
         //
         //KNOWN ISSUES
@@ -18,11 +25,21 @@ namespace MovementTest
         //
         //
         //
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Player _player;
+
+
+        private Sprite _sprite1;
+        private Sprite _sprite2;
+
         private List<Collidable> _Collidables = new List<Collidable>();
+
+
+
+
+
 
         public Game1()
         {
@@ -31,11 +48,19 @@ namespace MovementTest
             IsMouseVisible = true;
         }
 
+
+
+
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
             base.Initialize();
         }
+
+
+
+
 
         protected override void LoadContent()
         {
@@ -46,7 +71,7 @@ namespace MovementTest
             // Load the charachters
             var playerTexture = Content.Load<Texture2D>("StandingRat");
 
-            _player = new Player(playerTexture, new Vector2(100, 250), _graphics);
+            _sprite1 = new Sprite(playerTexture, new Vector2(100, 250), _graphics);
 
             // Load the platforms, with a particular texture
             _Collidables.Add(new Collidable(Content.Load<Texture2D>("platform"), new Vector2(100, 200)));
@@ -56,7 +81,7 @@ namespace MovementTest
         protected override void Update(GameTime gameTime)
         {
 
-            _player.Update(gameTime, _Collidables);
+            _sprite1.Update(gameTime, _Collidables);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -75,7 +100,7 @@ namespace MovementTest
             foreach (Collidable Collidable in _Collidables)
                 Collidable.Draw(_spriteBatch);
 
-            _player.Draw(_spriteBatch);
+            _sprite1.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

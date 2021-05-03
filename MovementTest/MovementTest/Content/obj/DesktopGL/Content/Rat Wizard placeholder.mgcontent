@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/jmlol/source/repos/MovementTest/MovementTest/Content/Rat Wizard placeholder.png</SourceFile>
-  <SourceTime>2021-03-31T19:24:09.9189169+01:00</SourceTime>
-  <DestFile>C:/Users/jmlol/source/repos/MovementTest/MovementTest/Content/bin/DesktopGL/Content/Rat Wizard placeholder.xnb</DestFile>
-  <DestTime>2021-03-31T19:26:39.2490721+01:00</DestTime>
+  <SourceFile>C:/Users/hashi/source/repos/progblack_platformer/MovementTest/MovementTest/Content/Rat Wizard placeholder.png</SourceFile>
+  <SourceTime>2021-05-03T00:52:51.6824009+01:00</SourceTime>
+  <DestFile>C:/Users/hashi/source/repos/progblack_platformer/MovementTest/MovementTest/Content/bin/DesktopGL/Content/Rat Wizard placeholder.xnb</DestFile>
+  <DestTime>2021-05-03T00:53:36.6895727+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

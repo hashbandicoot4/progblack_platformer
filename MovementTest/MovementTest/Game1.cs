@@ -31,8 +31,7 @@ namespace MovementTest
 
 
 
-        private Sprite _sprite1;
-        private Sprite _sprite2;
+        private List<Sprite> _sprites;
 
         private List<Collidable> _Collidables = new List<Collidable>();
 
@@ -71,7 +70,31 @@ namespace MovementTest
             // Load the charachters
             var playerTexture = Content.Load<Texture2D>("StandingRat");
 
-            _sprite1 = new Sprite(playerTexture, new Vector2(100, 250), _graphics);
+            _sprites = new List<Sprite>()
+            {
+                new Sprite(playerTexture)
+                {
+                    playerPosition = new Vector2(100, 100),
+                    Input = new Input()
+                    {
+                        Up = Keys.W,
+                        Down = Keys.S,
+                        Left = Keys.A,
+                        Right = Keys.D
+                    }
+                },
+                new Sprite(playerTexture)
+                {
+                    playerPosition = new Vector2(200, 100),
+                    Input = new Input()
+                    {
+                        Up = Keys.Up,
+                        Down = Keys.Down,
+                        Left = Keys.Left,
+                        Right = Keys.Right
+                    }
+                },
+            };
 
             // Load the platforms, with a particular texture
             _Collidables.Add(new Collidable(Content.Load<Texture2D>("platform"), new Vector2(100, 200)));
@@ -81,7 +104,8 @@ namespace MovementTest
         protected override void Update(GameTime gameTime)
         {
 
-            _sprite1.Update(gameTime, _Collidables);
+            foreach (var sprite in _sprites)
+                sprite.Update();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -100,7 +124,8 @@ namespace MovementTest
             foreach (Collidable Collidable in _Collidables)
                 Collidable.Draw(_spriteBatch);
 
-            _sprite1.Draw(_spriteBatch);
+            foreach (var sprite in _sprites)
+                sprite.Draw(SpriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

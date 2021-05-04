@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MovementTest;
+namespace MovementTest
 {
     public class Animation
     {
